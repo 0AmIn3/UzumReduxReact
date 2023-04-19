@@ -39,7 +39,7 @@ const Basket = () => {
     setSale(b);
   }, [basket]);
   return (
-    <div className="w-full h-[90vh] pt-[120px] flex items-start justify-center">
+    <div className="w-full h-[90vh] flex items-start justify-center">
 
     {
       basket.length > 0 ?<div className="mt-20">

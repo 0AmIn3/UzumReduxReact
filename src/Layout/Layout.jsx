@@ -47,7 +47,7 @@ const Layout = () => {
       <basketCTX.Provider value={{ basket, setBasket, AddToBasket }}>
         <div className="w-[80%] max-w-[1728px]  mx-auto my-0">
           <Header className='max-w-[1728px] ' />
-          <main className="">
+          <main className="pt-[150px]">
             <Outlet />
           </main>
         </div>

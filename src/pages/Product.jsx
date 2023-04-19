@@ -28,7 +28,7 @@ const Product = () => {
   }
   return (
     <div>
-      <div className="w-full flex gap-[54px] med pt-[120px] h-[506px]">
+      <div className="w-full flex gap-[54px] med  h-[506px]">
         <div className="w-[300px] med2 mx-auto my-0  h-[506px]">
           <div className="">
             <Swiper
