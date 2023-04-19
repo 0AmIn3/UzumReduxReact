@@ -1,0 +1,221 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat";
+}
+
+.swip {
+  border-radius: 30px;
+  background: linear-gradient(87.38deg, #9643ff 1.53%, #5200ba 98.76%);
+
+  .swiper-pagination-bullet {
+    background-color: white;
+  }
+  .NextHome {
+    opacity: 0;
+    width: 24px;
+    height: 24px;
+    background-image: url(/icons/next.svg);
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    z-index: 9999;
+  }
+  .PrevHome {
+    opacity: 0;
+
+    width: 24px;
+    height: 24px;
+    background-image: url(/icons/prev.svg);
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    z-index: 9999;
+  }
+  .swiper-slide-active {
+    .NextHome {
+      opacity: 1 !important;
+    }
+    .PrevHome {
+      opacity: 1 !important;
+    }
+  }
+}
+.lineNone {
+  // all: unset;
+  outline: none;
+}
+.SearchBorder {
+  border: 1px solid #e2eaf1;
+  border-radius: 4px;
+}
+.like {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+.basket {
+  position: absolute;
+  bottom: 0px;
+  right: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+.TransTex {
+  text-decoration: line-through;
+}
+
+.counter {
+  border: 1px solid #acacac;
+  border-radius: 3px;
+  user-select: none;
+}
+.swiptext {
+  height: 100px;
+  overflow: hidden;
+  overflow-y: scroll;
+  // max-width: 500px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+@media only screen and (max-width: 1479px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media only screen and (max-width: 1338px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .med {
+    flex-direction: column;
+    height: fit-content;
+  }
+  .med2 {
+    width: 400px;
+  }
+  .prodInf {
+    width: 100%;
+  }
+  .bas{
+    width: 100%;
+    
+  }
+  .cotn{
+    flex-direction: column-reverse;
+  }
+ 
+}
+@media only screen and (max-width: 1093px) {
+ .logo{
+  width: 150px;
+ }
+ .header{
+  gap: 15px;
+ }
+}
+@media only screen and (max-width: 1006px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .swiplog {
+    font-size: 23px;
+  }
+  .adios{
+    display: none;
+  }
+}
+@media only screen and (max-width: 734px) {
+.cat{
+  font-size: 12px;
+}
+.header{
+  height: 120px;
+  position: relative;
+  z-index: 9999;
+}
+.search{
+  width: 100%;
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+}
+.modal{
+  top: 120px !important;
+}
+}
+@media only screen and (max-width: 649px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .swiplog {
+    font-size: 20px;
+  }
+  .swipprice {
+    font-size: 20px;
+  }
+  .med2 {
+    width: 300px;
+    height: fit-content;
+  }
+  .PodItem{
+    flex-direction: column;
+    height: fit-content;
+  }
+}
+@media only screen and (max-width: 541px) {
+.opt{
+  display: flex;
+  flex-direction: column;
+}
+}
+
+@media only screen and (max-width: 401px) {
+  .swiplog {
+    font-size: 18px;
+  }
+  .swip {
+    height: 500px;
+  }
+}
+@media only screen and (max-width: 370px) {
+  .med2 {
+    width: 200px;
+    height: fit-content;
+  }
+  .header{
+    display: flex;
+    flex-direction: column;
+    justify-content: unset;
+    padding-top: 20px;
+  }
+}
+.header{
+  width: 80%;
+  position: fixed;
+  z-index: 9999;
+  background-color: white;
+  max-width: 1728px;
+}
+.modal{
+  position: fixed;
+  top: 84px;
+  z-index: -1;
+  transition: 0.3s ease;
+}
+.catalog{
+display: none;
+}
+.searchh{
+  display: none;
+  
+}
