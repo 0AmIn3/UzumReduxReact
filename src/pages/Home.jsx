@@ -23,7 +23,7 @@ const Home = () => {
   // console.log(ChangeLenght(3 , arr));
   return (
     <>
-      <div className="w-full h-[474px] swip">
+      <div className="w-full h-[474px] pt-[120px] swip">
         <Swiper
           modules={[Navigation, Pagination, A11y]}
           spaceBetween={0}

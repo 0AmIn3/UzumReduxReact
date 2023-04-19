@@ -28,7 +28,7 @@ const Product = () => {
   }
   return (
     <div>
-      <div className="w-full flex gap-[54px] med  h-[506px]">
+      <div className="w-full flex gap-[54px] med pt-[120px] h-[506px]">
         <div className="w-[300px] med2 mx-auto my-0  h-[506px]">
           <div className="">
             <Swiper
@@ -38,9 +38,9 @@ const Product = () => {
               modules={[FreeMode, Navigation]}
               className="mySwiper2 "
             >
-              {arr.map((item) => (
+              {i.media.map((item) => (
                 <SwiperSlide>
-                  <img className="w-full" src="/icons/goods.jpg" />
+                  <img className="w-full" src={item}/>
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -68,7 +68,7 @@ const Product = () => {
             <h1>Cтиральный порошок Tide, Color Lenor Touch, автомат, 3 кг</h1>
             <div className="flex gap-4">
               <p className=" text-sm font-medium">
-                {i.price - (i.price / 100) * i.sale}
+                {i.price - (i.price / 100) * i.salePercentage}
               </p>
               <p className=" text-[#ACACAC] text-sm font-medium TransTex">
                 {i.price} сум
@@ -153,18 +153,7 @@ const Product = () => {
       <div className="center w-[60%] prodInf mx-auto my-0 mt-20">
         <h1 className=" text-xl font-medium">Описание товара</h1>
         <p className=" text-sm font-normal">
-          Стиральный порошок Tide Lenor Touch подходит для использования в
-          стиральных машинах любого типа. Сочетание очищающего эффекта порошка и
-          смягчающего эффекта Lenor делает вещи безупречно чистыми, нежными и
-          свежими. Стирайте согласно рекомендациям на ярлыках текстильных
-          изделий. Рекомендованный режим стирки — от 20 минут при температуре
-          воды 30'C и выше. Обратите внимание: порошок не предназначен для
-          стирки изделий из шерсти и шелка. Синтетическое моющее средство
-          порошкообразное для использования в стиральных машинах любого типа.
-          Рекомендованная температура стирки указана на ярлыках текстильных
-          изделий. Не перегружайте стиральную машину. Оставьте зазор в ширину
-          ладони между загруженным бельем и барабаном. Белье будет двигаться
-          свободно, стирка будет более эффективной.
+          {i.description}
         </p>
       </div>
       <div className="mt-20">

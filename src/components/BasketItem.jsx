@@ -14,28 +14,28 @@ const BasketItem = ({ item, changeTotal ,changeTotalmin , changBask }) => {
   return (
     <div className="h-[187px] w-full PodItem flex gap-7 ">
       <div className="w-[143px] ">
-        <img className="w-full" src="/icons/goods.jpg" alt="" />
+        <img className="w-full" src={item.media[0]} alt="" />
       </div>
       <div className=" flex flex-col gap-2">
-        <h1>{item.name}</h1>
+        <h1>{item.title}</h1>
         <div className="w-full">
           <p className=" text-[#ACACAC] text-sm font-medium TransTex">
-            {item.price} сум
+            {item.price} 
           </p>
           <p className=" text-sm font-medium">
-            {item.price - (item.price / 100) * item.sale}
+            {item.price - (item.price / 100) * item.salePercentage}
           </p>
         </div>
         <div className="w-[89px] px-[10px] flex items-center justify-between h-[30px] counter">
           <AiOutlineMinus onClick={() => {
             // setCount(count - 1)
-            changeTotalmin(item.price - (item.price / 100) * item.sale)
+            changeTotalmin(item.price - (item.price / 100) * item.salePercentage)
             changBask(item , count - 1)
           }} />
           <p>{count}</p>
           <AiOutlinePlus onClick={() => {
             // setCount(count + 1)
-            changeTotal(item.price - (item.price / 100) * item.sale)
+            changeTotal(item.price - (item.price / 100) * item.salePercentage)
             changBask(item, count + 1)
             
           }} />

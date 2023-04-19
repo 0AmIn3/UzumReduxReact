@@ -8,7 +8,7 @@ const Swip = ({ item }) => {
       <div className="w-[100%] flex flex-col gap-4">
         <Link to={"/product/" + item.id}>
        
-          <h1 className=" swiplog text-[44px] font-extrabold">{item.name}</h1>
+          <h1 className=" swiplog text-[44px] font-extrabold">{item.title}</h1>
         </Link>
 
         {/* <p className=" text-[28px] swipprice font-semibold">{item.price} сум</p> */}
@@ -17,17 +17,11 @@ const Swip = ({ item }) => {
             {item.price} сум
           </p>
           <p className=" text-[28px] swipprice font-semibold">
-            {item.price - (item.price / 100) * item.sale}
+            {item.price - (item.price / 100) * item.salePercentage}
           </p>
         </div>
         <p className=" swiptext text-sm font-medium">
-          Станьте востребованным разработчиком. Вы изучите основы
-          программирования и основные концепции компьютерных наук, цифровые
-          технологии, операционные системы, программное обеспечение, базы
-          данных, системы аналитики, языки программирования и многое другое.
-          Познакомитесь с тестированием и системным анализом. На программе
-          сможете сделать осознанный выбор специализации и технологий,
-          прокачаться в выбранном направлении.
+         {item.description}
         </p>
       </div>
       <div className="">{/* <img src="/icons/Goods.png" alt="" /> */}</div>

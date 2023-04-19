@@ -32,14 +32,14 @@ const Basket = () => {
     let a = 0;
     let b = 0
     for (let item of basket) {
-      a += (item.price - (item.price / 100) * item.sale) * item.count;
-      b += (item.price / 100) * item.sale * item.count
+      a += (item.price - (item.price / 100) * item.salePercentage) * item.count;
+      b += (item.price / 100) * item.salePercentage * item.count
     }
     setTotal(a);
     setSale(b);
   }, [basket]);
   return (
-    <div className="w-full h-[90vh]  flex items-start justify-center">
+    <div className="w-full h-[90vh] pt-[120px] flex items-start justify-center">
 
     {
       basket.length > 0 ?<div className="mt-20">

@@ -11,7 +11,7 @@ const LikedPage = () => {
     setArrFill([...a]);
   }, [arr]);
   return (
-    <div className="w-full h-[90vh] flex items-center justify-center">
+    <div className="w-full h-[90vh] pt-[120px] flex items-center justify-center">
     
       {arrFill.length > 0 ? (
         <div className="mt-20">
