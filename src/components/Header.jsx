@@ -7,7 +7,7 @@ import { SlBasket } from "react-icons/sl";
 import { mainArrCTX } from "../contexts/mainArrCTX";
 const Header = () => {
   const { basket, setBasket, AddToBasket } = useContext(basketCTX);
-  const {arr , setArr , ChangeLike} = useContext(mainArrCTX);
+  const {arr , setArr , } = useContext(mainArrCTX);
 
   const [modal, setModal] = useState(false);
   const [SearchResult, setSearchResult] = useState([]);
@@ -49,13 +49,12 @@ const Header = () => {
     }else{
       setSearchResult([])
     }
-    // console.log(as);
   }
   useEffect(() => {
     openModal();
   }, [modal]);
   return (
-    <div className="w-full h-[84px] relative header flex items-center justify-between gap-[15px] ">
+    <div className="w-full h-[84px] relative header flex  items-center justify-between gap-[15px] "  >
       <div className="flex  items-center  ">
         <Link to={"/"} className="w-[200px] logo">
           <img src="/icons/logo.svg" alt="" />

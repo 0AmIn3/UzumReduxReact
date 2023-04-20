@@ -3,17 +3,19 @@ import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import { mainArrCTX } from "../contexts/mainArrCTX";
 import { basketCTX } from "../contexts/basketCTX";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addLiked } from "../features/liked/likedSlice";
 
 const Layout = () => {
-  const data =  useSelector(state => state.goods.data)
-
-
-  const [arr, setArr] = useState(data);
+  const goods = useSelector((state) => state.goods.data);
+  const liked = useSelector((state) => state.liked.data);
+  const liked_id = useSelector((state) => state.liked.data_id);
+  console.log(liked, liked_id);
+  const [arr, setArr] = useState(goods);
   const [basket, setBasket] = useState([]);
   function AddToBasket(obj, count) {
     let cop = [...basket];
-    
+
     cop = basket.filter((item) => item.id !== obj.id);
 
     let nev = {
@@ -22,32 +24,14 @@ const Layout = () => {
     };
     cop.push(nev);
     setBasket([...cop]);
-    // console.log(cop);
-    // console.log(basket);
   }
 
-  useEffect(() => {
-    // console.log(basket);
-  }, [basket]);
-
-  function ChangeLike(obj, bool) {
-    let cop = [...arr];
-    let inx = arr.indexOf(obj);
-    let n = {
-      ...obj,
-      like: bool,
-    };
-    cop.splice(inx, 1, n);
-    setArr(cop);
-  }
-
-  // console.log(arr);
   return (
-    <mainArrCTX.Provider value={{ arr, setArr, ChangeLike }}>
+    <mainArrCTX.Provider value={{ arr, setArr }}>
       <basketCTX.Provider value={{ basket, setBasket, AddToBasket }}>
-        <div className="w-[80%] max-w-[1728px]  mx-auto my-0">
-          <Header className='max-w-[1728px] ' />
-          <main className="pt-[150px]">
+        <div className="w-[80%] max-w-[1728px]   mx-auto my-0" id="header">
+          <Header className="max-w-[1728px] " />
+          <main className="pt-[120px]">
             <Outlet />
           </main>
         </div>

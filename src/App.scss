@@ -106,22 +106,29 @@
   .prodInf {
     width: 100%;
   }
-  .bas{
+  .bas {
     width: 100%;
-    
   }
-  .cotn{
+  .cotn {
     flex-direction: column-reverse;
   }
- 
+  .arr {
+    width: 100%;
+  }
+  .swiptext {
+    display: none;
+  }
+  .swiplog{
+    font-size: 25px;
+  }
 }
 @media only screen and (max-width: 1093px) {
- .logo{
-  width: 150px;
- }
- .header{
-  gap: 15px;
- }
+  .logo {
+    width: 150px;
+  }
+  .header {
+    gap: 15px;
+  }
 }
 @media only screen and (max-width: 1006px) {
   .grid {
@@ -130,35 +137,39 @@
   .swiplog {
     font-size: 23px;
   }
-  .adios{
+  .adios {
     display: none;
   }
 }
+.search {
+
+  z-index: -1;
+}
 @media only screen and (max-width: 734px) {
-.cat{
-  font-size: 12px;
-}
-.header{
-  height: 120px;
-  position: relative;
-  z-index: 9999;
-}
-.search{
-  width: 100%;
-  position: absolute;
-  bottom: -40px;
-  left: 0;
-}
-.modal{
-  top: 120px !important;
-}
+  .cat {
+    font-size: 12px;
+  }
+  .header {
+    height: 120px;
+    position: relative;
+    z-index: 9999;
+  }
+  .search {
+    width: 100%;
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+  }
+  .modal {
+    top: 120px !important;
+  }
 }
 @media only screen and (max-width: 649px) {
   .grid {
     grid-template-columns: repeat(1, 1fr);
   }
   .swiplog {
-    font-size: 20px;
+    font-size: 18px;
   }
   .swipprice {
     font-size: 20px;
@@ -167,16 +178,37 @@
     width: 300px;
     height: fit-content;
   }
-  .PodItem{
+  .swipmain{
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    padding-top: 20px;
+  }
+  .swipImg{
+    width: 200px;
+    
+  }
+  .PodItem {
     flex-direction: column;
     height: fit-content;
   }
 }
 @media only screen and (max-width: 541px) {
-.opt{
-  display: flex;
-  flex-direction: column;
-}
+  .opt {
+    display: flex;
+    flex-direction: column;
+  }
+  .swip{
+    // height: 500px;
+  }
+  .swipmain {padding-left: 30px; padding-right: 30px;}
+  .swiplog {
+    font-size: 14px;
+  }
+  .swipprice{
+
+    font-size: 14px;
+  }
+  
 }
 
 @media only screen and (max-width: 401px) {
@@ -192,30 +224,29 @@
     width: 200px;
     height: fit-content;
   }
-  .header{
+  .header {
     display: flex;
     flex-direction: column;
     justify-content: unset;
     padding-top: 20px;
   }
 }
-.header{
+.header {
   width: 80%;
   position: fixed;
   z-index: 9999;
   background-color: white;
   max-width: 1728px;
 }
-.modal{
+.modal {
   position: fixed;
   top: 84px;
   z-index: -1;
   transition: 0.3s ease;
 }
-.catalog{
-display: none;
-}
-.searchh{
+.catalog {
   display: none;
-  
+}
+.searchh {
+  display: none;
 }

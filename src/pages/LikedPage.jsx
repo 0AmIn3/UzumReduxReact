@@ -1,24 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import ProductItem from "../components/ProductItem";
 import { mainArrCTX } from "../contexts/mainArrCTX";
+import { useSelector } from "react-redux";
 
 const LikedPage = () => {
-  const { arr, setArr, ChangeLike } = useContext(mainArrCTX);
-  const [arrFill, setArrFill] = useState([]);
+  const { arr, setArr } = useContext(mainArrCTX);
+  const liked = useSelector((state) => state.liked.data);
 
-  useEffect(() => {
-    let a = arr.filter((item) => item.like === true);
-    setArrFill([...a]);
-  }, [arr]);
   return (
-    <div className="w-full h-[90vh] flex items-center justify-center">
-    
-      {arrFill.length > 0 ? (
+    <div className="w-full h-[100%] flex items-center justify-center">
+      {liked.length > 0 ? (
         <div className="mt-20">
           <h1 className="text-[32px] font-semibold ">Избранное</h1>
           <div className="grid grid-cols-5 py-8 gap-12">
-            {arrFill.map((item, inx) => (
-              <ProductItem key={inx} ChangeLike={ChangeLike} item={item} />
+            {liked.map((item, inx) => (
+              <ProductItem key={inx} item={item} />
             ))}
           </div>
         </div>

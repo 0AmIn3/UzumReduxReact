@@ -9,18 +9,24 @@ import Swip from "../components/Swip";
 import { useSwiper } from "swiper/react";
 import ProductItem from "../components/ProductItem";
 import { mainArrCTX } from "../contexts/mainArrCTX";
+import Recomendations from "../components/Recomendations";
+
 const Home = () => {
   const swiper = useSwiper();
   const [count, setCount] = useState(10);
-  const {arr , setArr , ChangeLike} = useContext(mainArrCTX);
-
-  
-
+  const { arr, setArr } = useContext(mainArrCTX);
+  let sor = arr;
+  sor = [...sor].sort((a, b) => a.rating - b.rating).reverse();
+  let cotigor = arr.map((item) => item.type);
+  cotigor = [...new Set(cotigor)];
 
   function ChangeLenght(len, ar) {
     return ar.slice(0, len);
   }
-  // console.log(ChangeLenght(3 , arr));
+  useEffect(() => {
+    console.log(cotigor);
+  });
+
   return (
     <>
       <div className="w-full h-[474px]  swip">
@@ -32,9 +38,9 @@ const Home = () => {
           pagination={{ clickable: true }}
           onSwiper={(swiper) => swiper}
           onSlideChange={() => "slide change"}
-          className="h-full"
+          className="h-full "
         >
-          {arr.map((item, inx) => (
+          {arr.slice(0, 6).map((item, inx) => (
             <SwiperSlide key={inx} className="">
               <Swip key={inx} item={item} />
             </SwiperSlide>
@@ -44,61 +50,28 @@ const Home = () => {
       <div className=" mt-20">
         <h1 className=" text-[32px] font-semibold">Популярное</h1>
         <div className=" grid  grid-cols-5 py-8 gap-12">
-          {ChangeLenght(count, arr).map((item, inx) => (
-            <ProductItem key={inx} ChangeLike={ChangeLike} item={item} />
+          {ChangeLenght(count, sor).map((item, inx) => (
+            <ProductItem key={inx} item={item} />
           ))}
         </div>
         <div
           className="bg-[#EAEAF9] w-fit mx-auto my-2 px-[15px] py-[5px] text-[#3333CC]"
           onClick={() => {
             if (count <= arr.length) {
-              setCount(count + 10);
+              setCount(count + 20);
             } else {
               setCount(10);
             }
           }}
         >
-          {count <= arr.length ? "Показать еще 10" : "Свернуть"}
+          {count < arr.length ? "Показать еще " : "Свернуть"}
         </div>
       </div>
-      <div className=" mt-20">
-        <h1 className=" text-[32px] font-semibold">Спортивная одежда</h1>
-        <div className=" grid grid-cols-5 py-8 gap-12">
-          {ChangeLenght(5, arr).map((item, inx) => (
-            <ProductItem key={inx} ChangeLike={ChangeLike} item={item} />
-          ))}
-        </div>
-   
-      </div>
-      <div className=" mt-20">
-        <h1 className=" text-[32px] font-semibold">Активный отдых</h1>
-        <div className=" grid grid-cols-5 py-8 gap-12">
-          {ChangeLenght(5, arr).map((item, inx) => (
-            <ProductItem key={inx} ChangeLike={ChangeLike} item={item} />
-          ))}
-        </div>
-   
-      </div>
-      <div className=" mt-20">
-        <h1 className=" text-[32px] font-semibold">Спортивная одежда</h1>
-        <div className=" grid grid-cols-5 py-8 gap-12">
-          {ChangeLenght(5, arr).map((item, inx) => (
-            <ProductItem key={inx} ChangeLike={ChangeLike} item={item} />
-          ))}
-        </div>
-   
-      </div>
-      <div className=" mt-20">
-        <h1 className=" text-[32px] font-semibold">Активный отдых</h1>
-        <div className=" grid grid-cols-5 py-8 gap-12">
-          {ChangeLenght(5, arr).map((item, inx) => (
-            <ProductItem key={inx} ChangeLike={ChangeLike} item={item} />
-          ))}
-        </div>
-   
-      </div>
+      {cotigor.map((item, inx) => (
+        <Recomendations key={inx} type={item} />
+      ))}
+
     </>
   );
 };
-
 export default Home;
