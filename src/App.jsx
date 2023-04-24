@@ -8,14 +8,15 @@ import Basket from "./pages/Basket";
 import LikedPage from "./pages/LikedPage";
 import Product from "./pages/Product";
 import { useSelector } from "react-redux";
+import Admin from "./pages/Admin";
+import AdminPanel from "./pages/AdminPanel";
 
 function App() {
   const [count, setCount] = useState(0);
 
   const { pathname, hash  } = useLocation();
   useEffect(() => {
-    console.log(hash);
-    console.log(pathname);
+
     if (hash === '') {
       window.scrollTo(0, 0);
     }
@@ -38,6 +39,9 @@ function App() {
         <Route path="/liked" element={<LikedPage />} />
         <Route path="/product/:id" element={<Product />} />
       </Route>
+      <Route path="/admin" element={<Admin />} />
+      <Route path="/admin/panel" element={<AdminPanel />} />
+
     </Routes>
   );
 }

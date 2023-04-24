@@ -24,7 +24,7 @@ const Home = () => {
     return ar.slice(0, len);
   }
   useEffect(() => {
-    console.log(cotigor);
+    // console.log(cotigor);
   });
 
   return (

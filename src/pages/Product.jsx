@@ -15,6 +15,7 @@ import ProductItem from "../components/ProductItem";
 import { basketCTX } from "../contexts/basketCTX";
 import { useDispatch, useSelector } from "react-redux";
 import { addLiked, removeLiked } from "../features/liked/likedSlice";
+import { addCart } from "../features/cart/cartSlice";
 
 const Product = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -24,8 +25,9 @@ const Product = () => {
   let i = arr.filter((item) => item.id == id)[0];
   const [count, setCount] = useState(1);
   const liked_id = useSelector((state) => state.liked.data_id);
+  const cart = useSelector((state) => state.cart.data);
   const dispath = useDispatch();
-
+let fill = arr.filter(item => item.rating == i.rating)
   console.log();
 
   function ChangeLenght(len, ar) {
@@ -102,7 +104,7 @@ const Product = () => {
                 }}
                 variant="contained"
                 disableElevation
-                onClick={() => AddToBasket(i, count)}
+                onClick={() => dispath(addCart({good: i , count: count}))}
               >
                 Добавить в корзину
               </Button>
@@ -157,7 +159,7 @@ const Product = () => {
       <div className="mt-20">
         <h1 className="text-[32px] font-semibold ">Похожие товары</h1>
         <div className=" grid grid-cols-5 py-8 gap-12">
-          {ChangeLenght(5, arr).map((item, inx) => (
+          {fill.map((item, inx) => (
             <ProductItem key={inx} item={item} />
           ))}
         </div>

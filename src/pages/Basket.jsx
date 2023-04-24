@@ -3,12 +3,16 @@ import { basketCTX } from "../contexts/basketCTX";
 import ProductItem from "../components/ProductItem";
 import { mainArrCTX } from "../contexts/mainArrCTX";
 import BasketItem from "../components/BasketItem";
+import { useSelector } from "react-redux";
 
 const Basket = () => {
   const { basket, setBasket, AddToBasket } = useContext(basketCTX);
   const { arr, setArr } = useContext(mainArrCTX);
   const [total, setTotal] = useState(0);
   const [sale, setSale] = useState(0);
+  const [cart, setCart] = useState(useSelector((state) => state.cart.data));
+  // let cart = ;
+
   function changeTotal(con) {
     setTotal(total + con);
     console.log(total);
@@ -25,26 +29,30 @@ const Basket = () => {
       count: count,
     };
     cop.splice(inx, 1, n);
-    setBasket(cop);
+    
   }
   useEffect(() => {
+   console.log(cart);
     let a = 0;
     let b = 0;
-    for (let item of basket) {
+    for (let item of cart) {
       a += (item.price - (item.price / 100) * item.salePercentage) * item.count;
       b += (item.price / 100) * item.salePercentage * item.count;
     }
     setTotal(a);
     setSale(b);
-  }, [basket]);
+  }, [cart]);
+
+
+
   return (
     <div className="w-full h-[100%] flex items-center justify-center">
-      {basket.length > 0 ? (
+      {cart.length > 0 ? (
         <div className="mt-20">
           <h1 className="text-[32px] font-semibold ">Корзина товаров</h1>
           <div className="w-full mt-8 cotn flex justify-between gap-5">
             <div className="w-[806px] bas counter flex flex-col gap-4 py-[43px] px-[30px]">
-              {basket.map((item, inx) => (
+              {cart.map((item, inx) => (
                 <BasketItem
                   key={inx}
                   item={item}
@@ -55,9 +63,9 @@ const Basket = () => {
               ))}
             </div>
             <div className="w-[400px] arr h-fit counter py-[43px] px-[30px]">
-              <h1 className=" text-4xl font-semibold">{total} сум</h1>
-              <p>Итого товаров: {basket.length}</p>
-              <p>Итого скидки: {sale} сум</p>
+              <h1 className=" text-4xl font-semibold">{Math.ceil(total)} сум</h1>
+              <p>Итого товаров: {cart.length}</p>
+              <p>Итого скидки: {Math.ceil(sale)} сум</p>
             </div>
           </div>
         </div>

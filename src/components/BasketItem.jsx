@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { basketCTX } from "../contexts/basketCTX";
+import { useDispatch } from "react-redux";
+import { removeCart } from "../features/cart/cartSlice";
 
 const BasketItem = ({ item, changeTotal, changeTotalmin, changBask }) => {
   const [count, setCount] = useState(item.count);
@@ -8,6 +10,7 @@ const BasketItem = ({ item, changeTotal, changeTotalmin, changBask }) => {
     (item.price - (item.price / 100) * item.sale) * item.count
   );
   const { basket, setBasket, AddToBasket } = useContext(basketCTX);
+  const dispath = useDispatch();
 
   useEffect(() => {
     setCount(item.count);
@@ -57,7 +60,7 @@ const BasketItem = ({ item, changeTotal, changeTotalmin, changBask }) => {
           />
         </div>
         <div className=" bg-[#EAEAF9] w-fit px-[15px] py-[5px] text-[#3333CC]">
-          <p onClick={() => setBasket(basket.filter((i) => i.id !== item.id))}>
+          <p onClick={() => dispath(removeCart(item))}>
             Удалить
           </p>
         </div>
