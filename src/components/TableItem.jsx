@@ -2,7 +2,8 @@ import { TableCell, TableRow } from "@mui/material";
 import React from "react";
 import ModalCard from "./ModalCard";
 
-const TableItem = ({ item }) => {
+const TableItem = ({ item , good }) => {
+    console.log(good);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -29,7 +30,7 @@ const TableItem = ({ item }) => {
                     <img onClick={handleOpen} src="/img/edit.svg" alt="" />
                 </div>
             </TableCell>
-            <ModalCard open={open} handleOpen={handleOpen} handleClose={handleClose} />
+            <ModalCard open={open} good={good} handleOpen={handleOpen} handleClose={handleClose} />
         </TableRow>
     );
 }

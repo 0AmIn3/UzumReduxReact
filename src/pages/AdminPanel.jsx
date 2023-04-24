@@ -93,7 +93,7 @@ const AdminPanel = () => {
                         </TableHead>
                         <TableBody>
                             {
-                                data.map((item, inx) => <TableItem  key={inx} item={item} />)
+                                data.map((item, inx) => <TableItem good={good} key={inx} item={item} />)
                             }
                         </TableBody>
                     </Table>
