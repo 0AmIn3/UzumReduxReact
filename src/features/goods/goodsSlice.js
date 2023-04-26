@@ -37,7 +37,7 @@ export const goodsSlice = createSlice({
       .addCase(postGoodAPI.fulfilled, (state, action) => {
         state.data = action.payload;
         state.status = "fulfilled";
-        console.log(state.data);
+        // console.log(state.data);
       })
       .addCase(postGoodAPI.rejected, (state, action) => {
         state.status = "rejected";
@@ -48,7 +48,7 @@ export const goodsSlice = createSlice({
       .addCase(pathGoodAPI.fulfilled, (state, action) => {
         state.data = action.payload;
         state.status = "fulfilled";
-        console.log(state.data);
+        // console.log(state.data);
       })
       .addCase(pathGoodAPI.rejected, (state, action) => {
         state.status = "rejected";
@@ -59,7 +59,7 @@ export const goodsSlice = createSlice({
       .addCase(deleteGoodAPI.fulfilled, (state, action) => {
         state.data = action.payload;
         state.status = "fulfilled";
-        console.log(state.data);
+        // console.log(state.data);
       })
       .addCase(deleteGoodAPI.rejected, (state, action) => {
         state.status = "rejected";

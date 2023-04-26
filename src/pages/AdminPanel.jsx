@@ -83,10 +83,10 @@ const AdminPanel = () => {
                         </TableHead>
                         <TableBody>
                             {
-                              goods.map((item ,inx)=> (
-                                <TableItem  key={inx} item={item} />
+                           goods.length > 0 ?    goods.map((item ,inx)=> (
+                            <TableItem  key={inx} item={item} />
 
-                              ))
+                          )) : null
                             }
                         </TableBody>
                     </Table>
