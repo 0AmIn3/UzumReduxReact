@@ -10,11 +10,12 @@ import { useSwiper } from "swiper/react";
 import ProductItem from "../components/ProductItem";
 import { mainArrCTX } from "../contexts/mainArrCTX";
 import Recomendations from "../components/Recomendations";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   const swiper = useSwiper();
   const [count, setCount] = useState(10);
-  const { arr, setArr } = useContext(mainArrCTX);
+  const arr = useSelector((state) => state.goods.data);
   let sor = arr;
   sor = [...sor].sort((a, b) => a.rating - b.rating).reverse();
   let cotigor = arr.map((item) => item.type);

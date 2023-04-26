@@ -18,20 +18,48 @@ export const cartSlice = createSlice({
       };
       cop.push(nev);
       state.data = [...cop];
-      console.log(state.data);
       localStorage.setItem("cart", JSON.stringify(state.data));
     },
     removeCart: (state, action) => {
       let cop = [...state.data];
       cop = state.data.filter((item) => item.id !== action.payload.id);
       state.data = cop;
-      console.log(action.payload.id, state.data);
 
       localStorage.setItem("cart", JSON.stringify(state.data));
     },
+    changeCountPlus:(state, action) => {
+     
+      state.data.forEach(item => {
+          if(item.id === action.payload.id){
+            item.count++
+          }
+        });
+    
+      localStorage.setItem("cart", JSON.stringify(state.data));
+    },
+    changeCountMinus:(state, action) => {
+     
+      state.data.forEach(item => {
+          if(item.id === action.payload.id){
+            item.count--
+          }
+        });
+    
+      localStorage.setItem("cart", JSON.stringify(state.data));
+    },
+    aa:(state, action)=>{
+      let n = {
+        ...action.payload.good,
+        count: action.payload.count,
+      };
+
+      state.data.splice(action.payload.idx, 1, n);
+      state.data = [...state.data]
+      localStorage.setItem("cart", JSON.stringify(state.data));
+    }
   },
 });
 
-export const { addCart, removeCart } = cartSlice.actions;
+export const { addCart, removeCart ,changeCountPlus , changeCountMinus , aa } = cartSlice.actions;
 
 export default cartSlice.reducer;

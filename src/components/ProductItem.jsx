@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import { basketCTX } from "../contexts/basketCTX";
 import { addLiked, removeLiked } from "../features/liked/likedSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { addCart } from "../features/cart/cartSlice";
+import { deleteLikeAPI, postLikeAPI } from "../features/goods/thunk";
 const ProductItem = ({ item }) => {
-  const { basket, setBasket, AddToBasket } = useContext(basketCTX);
   const liked_id = useSelector((state) => state.liked.data_id);
   const dispath = useDispatch();
 
@@ -40,6 +41,8 @@ const ProductItem = ({ item }) => {
           className="like"
           onClick={() => {
             dispath(removeLiked(item));
+            dispath(deleteLikeAPI(item.id));
+
           }}
           style={{ color: "red", fontSize: "30px" }}
         />
@@ -48,12 +51,14 @@ const ProductItem = ({ item }) => {
           className="like"
           onClick={() => {
             dispath(addLiked(item));
+            dispath(postLikeAPI(item));
+          
           }}
           style={{ fontSize: "30px" }}
         />
       )}
 
-      <SlBasket className="basket" onClick={() => AddToBasket(item, 1)} />
+      <SlBasket className="basket" onClick={() => dispath(addCart({good: item , count: 1}))} />
     </div>
   );
 };

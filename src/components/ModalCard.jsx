@@ -6,7 +6,9 @@ import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useForm } from "react-hook-form";
-
+import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from "react-redux";
+import { pathGoodAPI } from "../features/goods/thunk";
 const style = {
   position: "absolute",
   top: "50%",
@@ -19,7 +21,7 @@ const style = {
   p: 4,
 };
 
-const ModalCard = ({ good , open, handleClose }) => {
+const ModalCard = ({ item , open, handleClose }) => {
     // console.log(good);
   const {
     register,
@@ -27,13 +29,12 @@ const ModalCard = ({ good , open, handleClose }) => {
     watch,
     formState: { errors },
   } = useForm();
+  const dispatch = useDispatch()
   const onSubmit = (data) => {
-    data = {
-      id: uuidv4(),
-      img: "https://avatars.mds.yandex.net/i?id=072aa5a23f21ab8da49c67a024bf07fb86153e31-8427500-images-thumbs&n=13",
-      ...data,
-    };
-    setGoods([...goods, data]);
+    dispatch(pathGoodAPI  ({
+      id: item.id,
+      path: data
+    }))
   };
   return (
     <>
@@ -61,7 +62,7 @@ const ModalCard = ({ good , open, handleClose }) => {
                 className=" px-4 overflov-hidden"
               >
                 <input
-                  defaultValue={good.title}
+                  defaultValue={item.title}
                   type="text"
                   placeholder="Add titssle"
                   className="border-[1px] rounded-[24px] w-full border-[#E4E6EE] px-6 py-4 text-[gray] outline-none mt-[20px]"
@@ -69,7 +70,7 @@ const ModalCard = ({ good , open, handleClose }) => {
                 />
                 <br />
                 <input
-                  defaultValue={good.price}
+                  defaultValue={item.price}
                   type="number"
                   placeholder="Add price"
                   className="border-[1px] rounded-[24px] w-full border-[#E4E6EE] px-6 py-4 text-[gray] outline-none mt-[20px]"
@@ -77,11 +78,25 @@ const ModalCard = ({ good , open, handleClose }) => {
                 />
                 <br />
                 <input
-                  defaultValue={good.description}
+                  defaultValue={item.description}
                   type="text"
                   placeholder="Add description"
                   className="border-[1px] rounded-[24px] w-full border-[#E4E6EE] px-6 py-4 text-[gray] outline-none mt-[20px]"
                   {...register("description" )}
+                />
+                   <input
+                  defaultValue={item.salePercentage}
+                  type="text"
+                  placeholder="Add sale"
+                  className="border-[1px] rounded-[24px] w-full border-[#E4E6EE] px-6 py-4 text-[gray] outline-none mt-[20px]"
+                  {...register("salePercentage" )}
+                />
+                 <input
+                  defaultValue={item.type}
+                  type="text"
+                  placeholder="Add type"
+                  className="border-[1px] rounded-[24px] w-full border-[#E4E6EE] px-6 py-4 text-[gray] outline-none mt-[20px]"
+                  {...register("type" )}
                 />
                 <input type="submit" />
               </form>

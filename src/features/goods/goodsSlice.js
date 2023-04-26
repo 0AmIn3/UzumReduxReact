@@ -1,14 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { deleteGoodAPI, getGoodAPI, pathGoodAPI, postGoodAPI } from "./thunk";
 
-if (!localStorage.getItem("goods")) {
-  axios
-    .get("http://localhost:3001/goods")
-    .then((res) => localStorage.setItem("goods", JSON.stringify(res.data)));
-}
+
+
 
 const initialState = {
-  data: JSON.parse(localStorage.getItem("goods")),
+  data: [],
+  status: "idle",
 };
 
 export const goodsSlice = createSlice({
@@ -18,6 +17,53 @@ export const goodsSlice = createSlice({
     getGoods: (state, action) => {
       state.data = state.data;
     },
+  },
+  extraReducers(builder) {
+    builder
+      .addCase(getGoodAPI.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(getGoodAPI.fulfilled, (state, action) => {
+        state.data = action.payload;
+        state.status = "fulfilled";
+        // console.log(state.data); 
+      })
+      .addCase(getGoodAPI.rejected, (state, action) => {
+        state.status = "rejected";
+      })
+      .addCase(postGoodAPI.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(postGoodAPI.fulfilled, (state, action) => {
+        state.data = action.payload;
+        state.status = "fulfilled";
+        console.log(state.data);
+      })
+      .addCase(postGoodAPI.rejected, (state, action) => {
+        state.status = "rejected";
+      })
+      .addCase(pathGoodAPI.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(pathGoodAPI.fulfilled, (state, action) => {
+        state.data = action.payload;
+        state.status = "fulfilled";
+        console.log(state.data);
+      })
+      .addCase(pathGoodAPI.rejected, (state, action) => {
+        state.status = "rejected";
+      })
+      .addCase(deleteGoodAPI.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(deleteGoodAPI.fulfilled, (state, action) => {
+        state.data = action.payload;
+        state.status = "fulfilled";
+        console.log(state.data);
+      })
+      .addCase(deleteGoodAPI.rejected, (state, action) => {
+        state.status = "rejected";
+      });
   },
 });
 

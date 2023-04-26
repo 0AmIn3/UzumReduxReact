@@ -5,6 +5,7 @@ import { mainArrCTX } from "../contexts/mainArrCTX";
 import { basketCTX } from "../contexts/basketCTX";
 import { useDispatch, useSelector } from "react-redux";
 import { addLiked } from "../features/liked/likedSlice";
+import { getGoodAPI, getLikeAPI, postGoodAPI } from "../features/goods/thunk";
 
 const Layout = () => {
   const goods = useSelector((state) => state.goods.data);
@@ -12,37 +13,29 @@ const Layout = () => {
   const liked_id = useSelector((state) => state.liked.data_id);
   const [cart, setCart] = useState(useSelector((state) => state.cart.data));
   // console.log(liked, liked_id ,cart );
-  const [arr, setArr] = useState(goods);
-  const [basket, setBasket] = useState(useSelector((state) => state.cart.data));
+	const dispatch = useDispatch();
 
   useEffect(() => {
     // console.log(cart  );
   } , [cart])
-
-  function AddToBasket(obj, count) {
-      let cop = [...basket];
-
-      cop = basket.filter((item) => item.id !== obj.id);
-
-      let nev = {
-        ...obj,
-        count: count,
-      };
-      cop.push(nev);
-      setBasket([...cop]);
-  }
+	useEffect(() => {
+		if(!goods.length) {
+			dispatch(getGoodAPI())
+      
+		}
+    if(!liked.length){
+      dispatch(getLikeAPI())
+    }
+	}, []);
+ 
 
   return (
-    <mainArrCTX.Provider value={{ arr, setArr }}>
-      <basketCTX.Provider value={{ basket, setBasket, AddToBasket }}>
         <div className="w-[80%] max-w-[1728px] mx-auto my-0" >
           <Headerr className="max-w-[1728px] " />
           <main className="pt-[120px]">
             <Outlet />
           </main>
         </div>
-      </basketCTX.Provider>
-    </mainArrCTX.Provider>
   );
 };
 

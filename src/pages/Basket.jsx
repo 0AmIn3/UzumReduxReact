@@ -6,33 +6,27 @@ import BasketItem from "../components/BasketItem";
 import { useSelector } from "react-redux";
 
 const Basket = () => {
-  const { basket, setBasket, AddToBasket } = useContext(basketCTX);
-  const { arr, setArr } = useContext(mainArrCTX);
+  const arr = useSelector((state) => state.goods.data);
   const [total, setTotal] = useState(0);
   const [sale, setSale] = useState(0);
-  const [cart, setCart] = useState(useSelector((state) => state.cart.data));
+  const cart = useSelector((state) => state.cart.data);
+  // console.log(cart);
   // let cart = ;
 
   function changeTotal(con) {
     setTotal(total + con);
-    console.log(total);
+    // console.log(total);
   }
   function changeTotalmin(con) {
     setTotal(total - con);
-    console.log(total);
+    // console.log(total);
   }
   function changBask(obj, count) {
-    let cop = [...basket];
-    let inx = basket.indexOf(obj);
-    let n = {
-      ...obj,
-      count: count,
-    };
-    cop.splice(inx, 1, n);
+   
     
   }
   useEffect(() => {
-   console.log(cart);
+  //  console.log(cart);
     let a = 0;
     let b = 0;
     for (let item of cart) {

@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import { mainArrCTX } from "../contexts/mainArrCTX";
 import ProductItem from "./ProductItem";
+import { useSelector } from "react-redux";
 
 const Recomendations = ({type}) => {
   const [count, setCount] = useState(5);
-  const { arr, setArr } = useContext(mainArrCTX);
+  const arr = useSelector((state) => state.goods.data);
 
   let fill = arr.filter(item => item.type == type);
   function ChangeLenght(len, ar) {

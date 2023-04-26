@@ -11,10 +11,11 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 // import Header from "./components/Header"
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import TableItem from '../components/TableItem';
 import AddItem from '../components/AddItem';
 import HedAdmin from '../components/HedAdmin';
+import { getGoodAPI } from '../features/goods/thunk';
 
 const AdminPanel = () => {
     const cookies = new Cookies();
@@ -26,42 +27,31 @@ const AdminPanel = () => {
             console.log(cookies.get("name"));
       }
     })
-    const data = useSelector(state => state.goods.data)
+    const goods = useSelector((state) => state.goods.data);
+    const dispatch = useDispatch();
+    const [arr, setArr] = useState(goods)
+	useEffect(() => {
+		if(!goods.length) {
+			dispatch(getGoodAPI())
+            // setArr([...goods])
+            // console.log(arr);
+            // console.log(goods);
+		}
+       
+	}, [goods]);
 
-    const[goods , setGoods] = useState(JSON.parse(localStorage.getItem('goods')))
-    const[modal , setModal] = useState(false)
-    const[good , setGood] = useState({})
+ 
 
 
-    function changeModal(){
-        modal ? setModal(false) : setModal(true)
-    }
-    function changeGoods(arr){
-        setGoods(arr)
-        console.log(goods);
-    }
+
+  
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     return (
         <div>
-            {/* {modal ? <ModalAdmin item={good} changeGoods={changeGoods} changeModal={changeModal}/> : null}
-        {
-            goods.map(item => (
-                <div className="">
-                    <p>{item.id}</p>
-                    <p>{item.title}</p>
-                    <p>{item.description}</p>
-                    <p>{item.price}</p>
-                    <p>{item.type}</p>
-                    <p><b onClick={() =>{
-                        changeModal()
-                        setGood(item)
-                    }} >change</b> <b>delete</b></p>
-                </div>
-            ))
-        } */}
+       
           
           <HedAdmin />
             <main className="mt-[30px] px-[24px]">
@@ -93,7 +83,10 @@ const AdminPanel = () => {
                         </TableHead>
                         <TableBody>
                             {
-                                data.map((item, inx) => <TableItem good={good} key={inx} item={item} />)
+                              goods.map((item ,inx)=> (
+                                <TableItem  key={inx} item={item} />
+
+                              ))
                             }
                         </TableBody>
                     </Table>

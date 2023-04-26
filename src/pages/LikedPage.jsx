@@ -4,7 +4,7 @@ import { mainArrCTX } from "../contexts/mainArrCTX";
 import { useSelector } from "react-redux";
 
 const LikedPage = () => {
-  const { arr, setArr } = useContext(mainArrCTX);
+  const arr = useSelector((state) => state.goods.data);
   const liked = useSelector((state) => state.liked.data);
 
   return (

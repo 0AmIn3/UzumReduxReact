@@ -1,20 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { basketCTX } from "../contexts/basketCTX";
-import { useDispatch } from "react-redux";
-import { removeCart } from "../features/cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addCart, changeCountMinus, changeCountPlus, removeCart } from "../features/cart/cartSlice";
 
 const BasketItem = ({ item, changeTotal, changeTotalmin, changBask }) => {
   const [count, setCount] = useState(item.count);
   const [chang, setChang] = useState(
     (item.price - (item.price / 100) * item.sale) * item.count
   );
-  const { basket, setBasket, AddToBasket } = useContext(basketCTX);
-  const dispath = useDispatch();
+  const cart = useSelector((state) => state.cart.data);
 
+  const dispath = useDispatch();
   useEffect(() => {
     setCount(item.count);
-  }, [basket]);
+    // console.log(cart.indexOf(item));
+  }, [cart]);
 
   return (
     <div className="h-[187px] w-full PodItem flex gap-7 ">
@@ -45,7 +46,7 @@ const BasketItem = ({ item, changeTotal, changeTotalmin, changBask }) => {
                 changeTotalmin(
                   item.price - (item.price / 100) * item.salePercentage
                 );
-                changBask(item, count - 1);
+                dispath(changeCountMinus(item));
               }
             }}
           />
@@ -55,14 +56,12 @@ const BasketItem = ({ item, changeTotal, changeTotalmin, changBask }) => {
               changeTotal(
                 item.price - (item.price / 100) * item.salePercentage
               );
-              changBask(item, count + 1);
+              dispath(changeCountPlus(item));
             }}
           />
         </div>
         <div className=" bg-[#EAEAF9] w-fit px-[15px] py-[5px] text-[#3333CC]">
-          <p onClick={() => dispath(removeCart(item))}>
-            Удалить
-          </p>
+          <p onClick={() => dispath(removeCart(item))}>Удалить</p>
         </div>
       </div>
     </div>

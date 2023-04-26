@@ -16,11 +16,11 @@ import { basketCTX } from "../contexts/basketCTX";
 import { useDispatch, useSelector } from "react-redux";
 import { addLiked, removeLiked } from "../features/liked/likedSlice";
 import { addCart } from "../features/cart/cartSlice";
+import { postLikeAPI } from "../features/goods/thunk";
 
 const Product = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const { arr, setArr } = useContext(mainArrCTX);
-  const { basket, setBasket, AddToBasket } = useContext(basketCTX);
+  const arr = useSelector((state) => state.goods.data);
   const { id } = useParams();
   let i = arr.filter((item) => item.id == id)[0];
   const [count, setCount] = useState(1);
@@ -113,6 +113,7 @@ let fill = arr.filter(item => item.rating == i.rating)
                   variant="outlined"
                   onClick={() => {
                     dispath(removeLiked(i));
+                    dispath(postLikeAPI(i.id));
                   }}
                   key={1}
                   sx={{
@@ -133,6 +134,7 @@ let fill = arr.filter(item => item.rating == i.rating)
                   variant="outlined"
                   onClick={() => {
                     dispath(addLiked(i));
+                    dispath(postLikeAPI(i));
                   }}
                   key={1}
                   sx={{

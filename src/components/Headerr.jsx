@@ -7,8 +7,7 @@ import { SlBasket } from "react-icons/sl";
 import { mainArrCTX } from "../contexts/mainArrCTX";
 import { useSelector } from "react-redux";
 const Headerr = () => {
-  const { basket, setBasket, AddToBasket } = useContext(basketCTX);
-  const {arr , setArr , } = useContext(mainArrCTX);
+  const arr = useSelector((state) => state.goods.data);;
   const cart = useSelector((state) => state.cart.data);
   const [modal, setModal] = useState(false);
   const [SearchResult, setSearchResult] = useState([]);
