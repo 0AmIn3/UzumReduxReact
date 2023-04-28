@@ -27,8 +27,8 @@ const Product = () => {
   const liked_id = useSelector((state) => state.liked.data_id);
   const cart = useSelector((state) => state.cart.data);
   const dispath = useDispatch();
-let fill = arr.filter(item => item.rating == i.rating)
-  console.log();
+let fill = arr.filter(item => item.type == i.type)
+  console.log(fill);
 
   function ChangeLenght(len, ar) {
     return ar.slice(0, len);

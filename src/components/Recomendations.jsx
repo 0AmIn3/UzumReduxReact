@@ -12,7 +12,7 @@ const Recomendations = ({type}) => {
     return ar.slice(0, len);
   }
   return (
-    <div className=" mt-20">
+    <div className=" mt-20" id={type}>
     <h1 className=" text-[32px] font-semibold">{type[0].toUpperCase() + type.slice(1)}</h1>
     <div className=" grid  grid-cols-5 py-8 gap-12">
       {ChangeLenght(count, fill).map((item, inx) => (

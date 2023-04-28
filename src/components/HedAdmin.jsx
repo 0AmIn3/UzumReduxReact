@@ -100,7 +100,7 @@ const HedAdmin = () => {
             </IconButton>
             <div className="flex justify-between w-full items-center">
               <p className="font-extralight text-[black] text-[24px]">
-                Good morning, Maharram 👋
+                Good morning, {cookies.get("name")} 👋
               </p>
               <Link onClick={() => cookies.remove("name")} to={"/admin"}>
                 <img src="/img/exit.svg" alt="" />

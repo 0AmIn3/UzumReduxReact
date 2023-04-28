@@ -20,6 +20,7 @@ export const pathGoodAPI = createAsyncThunk('goods/pathGoodAPI', async (data) =>
 export const deleteGoodAPI = createAsyncThunk('goods/deleteGoodAPI', async (data) => {
     const res = await axios.delete('http://localhost:3001/goods/'+ data)
 
+    
     return res.data
 })
 

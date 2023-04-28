@@ -12,11 +12,11 @@ const Swip = ({ item }) => {
         <div className="w-full">
           <p className=" text-[#ACACAC] text-[28px] TransTex swipprice font-semibold">
           {item.salePercentage > 0
-              ? item.price.toLocaleString("ru-RU") + "руб."
+              ? (item.price).toLocaleString("ru-RU") + " руб."
               : ""}
           </p>
           <p className=" text-[28px] swipprice font-semibold">
-            {item.price - (item.price / 100) * item.salePercentage} руб.
+            {(item.price - (item.price / 100) * item.salePercentage).toLocaleString("ru-RU")} руб.
           </p>
         </div>
         <p className=" swiptext text-sm font-medium">{item.description}</p>

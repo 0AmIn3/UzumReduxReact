@@ -27,7 +27,7 @@ const BasketItem = ({ item, changeTotal, changeTotalmin, changBask }) => {
         <div className="w-full">
           <p className=" text-[#ACACAC] text-sm  font-medium TransTex">
             {item.salePercentage > 0
-              ? item.price.toLocaleString("ru-RU") + "руб."
+              ? item.price.toLocaleString("us-US") + "руб."
               : ""}
           </p>
           <p className=" text-sm font-medium">

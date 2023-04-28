@@ -57,9 +57,9 @@ const Basket = () => {
               ))}
             </div>
             <div className="w-[400px] arr h-fit counter py-[43px] px-[30px]">
-              <h1 className=" text-4xl font-semibold">{Math.ceil(total)} сум</h1>
+              <h1 className=" text-4xl font-semibold">{Math.ceil(total).toLocaleString('ru-RU')} сум</h1>
               <p>Итого товаров: {cart.length}</p>
-              <p>Итого скидки: {Math.ceil(sale)} сум</p>
+              <p>Итого скидки: {Math.ceil(sale).toLocaleString('ru-RU')} сум</p>
             </div>
           </div>
         </div>

@@ -10,6 +10,7 @@ import Product from "./pages/Product";
 import { useSelector } from "react-redux";
 import Admin from "./pages/Admin";
 import AdminPanel from "./pages/AdminPanel";
+import Catalog from "./pages/Catalog";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -38,6 +39,7 @@ function App() {
         <Route path="/basket" element={<Basket />} />
         <Route path="/liked" element={<LikedPage />} />
         <Route path="/product/:id" element={<Product />} />
+        <Route path="/catalog" element={<Catalog />} />
       </Route>
       <Route path="/admin" element={<Admin />} />
       <Route path="/admin/panel" element={<AdminPanel />} />

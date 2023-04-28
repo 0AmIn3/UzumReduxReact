@@ -7,11 +7,11 @@ import { SlBasket } from "react-icons/sl";
 import { mainArrCTX } from "../contexts/mainArrCTX";
 import { useSelector } from "react-redux";
 const Headerr = () => {
-  const arr = useSelector((state) => state.goods.data);;
+  const arr = useSelector((state) => state.goods.data);
   const cart = useSelector((state) => state.cart.data);
   const [modal, setModal] = useState(false);
   const [SearchResult, setSearchResult] = useState([]);
-  const [whatmodal, setWhatmodal] = useState('');
+  const [whatmodal, setWhatmodal] = useState("");
   let cotigor = arr.map((item) => item.type);
   cotigor = [...new Set(cotigor)];
   function openModal() {
@@ -19,59 +19,56 @@ const Headerr = () => {
     let catalog = document.querySelector(".catalog");
     let search = document.querySelector(".searchh");
     if (modal) {
-      modala.style.display = "flex"
-      
-      if(window.innerWidth > 733){
-        modala.style.top = "84px"
-      }else{
-        modala.style.top = "120px"
+      modala.style.display = "flex";
+
+      if (window.innerWidth > 733) {
+        modala.style.top = "84px";
+      } else {
+        modala.style.top = "120px";
       }
-    }else{
-      
-      modala.style.top = "-1000px"
-      setTimeout(() =>{
-        modala.style.display = "none"
-      } , 300)
+    } else {
+      modala.style.top = "-1000px";
+      setTimeout(() => {
+        modala.style.display = "none";
+      }, 300);
     }
     if (whatmodal) {
       catalog.style.display = "block";
       search.style.display = "none";
-    } else if(!whatmodal){
+    } else if (!whatmodal) {
       search.style.display = "block";
       catalog.style.display = "none";
-    } else{
-      console.log('a');
+    } else {
+      console.log("a");
     }
   }
-  function Search(val){
-    val = val.toLowerCase()
-    if(val.length > 0){
-      let as = arr.filter(item => item.name.toLowerCase().includes(val))
-      setSearchResult(as)
-    }else{
-      setSearchResult([])
+  function Search(val) {
+    val = val.toLowerCase();
+    if (val.length > 0) {
+      let as = arr.filter((item) => item.title.toLowerCase().includes(val));
+      // console.log(as);
+      setSearchResult(as);
+      console.log(SearchResult);
+    } else {
+      setSearchResult([]);
     }
   }
   useEffect(() => {
     openModal();
   }, [modal]);
   return (
-    <div className="w-full h-[84px] relative header flex  items-center justify-between gap-[15px] "  >
+    <div className="w-full h-[84px] relative header flex  items-center justify-between gap-[15px] ">
       <div className="flex  items-center  ">
         <Link to={"/"} className="w-[200px] logo">
           <img src="/icons/logo.svg" alt="" />
         </Link>
       </div>
       <div className="w-[40%] h-full search flex items-center gap-[5px]">
-        <div
-          className=" bg-[#EAEAF9]  px-[15px] py-[5px] text-[#3333CC]"
-          onClick={() => {
-            modal ? setModal(false) : setModal(true);
-            setWhatmodal(true);
-          }}
-        >
-          <p className="cat">Каталог</p>
-        </div>
+        <Link to={"/catalog"}>
+          <div className=" bg-[#EAEAF9]  px-[15px] py-[5px] text-[#3333CC]">
+            <p className="cat">Каталог</p>
+          </div>
+        </Link>
         <form
           action=""
           className="w-full h-[32px] SearchBorder flex items-center px-3 "
@@ -90,7 +87,7 @@ const Headerr = () => {
         </form>
       </div>
       <div className="flex  items-center gap-5">
-         <Link to={"/admin"} className="flex items-center gap-2">
+        <Link to={"/admin"} className="flex items-center gap-2">
           <CgProfile />
           <p className="adios">Шахзод</p>
         </Link>
@@ -110,21 +107,34 @@ const Headerr = () => {
       </div>
       <div className="w-full h-fit absolute modal flex items-center justify-center bg-[white]">
         <div className="w-[256px] catalog ">
-         {
-          cotigor.map((item,inx) => (
-            <p key={inx}>{item}</p>
-          ))
-         }
+          {cotigor.map((item, inx) => (
+            <Link
+              to={`/#${item}`}
+              onClick={() => {
+                setModal(false);
+              }}
+              key={inx}
+            >
+              <p key={inx}>{item}</p>
+            </Link>
+          ))}
         </div>
-        <div className="w-[256px] searchh ">
-          {
-            SearchResult.length >= 1 ? 
-            SearchResult.map((item , inx) => (
-              <p key={inx}>{item.name}</p>
-
-            )) : <p>Нет Резульнатов</p>
-          }
-        
+        <div className="w-[100%] searchh ">
+          {SearchResult.length >= 1 ? (
+            SearchResult.map((item, inx) => (
+              <Link
+                to={"/product/" + item.id}
+                onClick={() => {
+                  setModal(false);
+                  setSearchResult([]);
+                }}
+              >
+                <p key={inx}>{item.title}</p>
+              </Link>
+            ))
+          ) : (
+            <p>Нет Резульнатов</p>
+          )}
         </div>
       </div>
     </div>
