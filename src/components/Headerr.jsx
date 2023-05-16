@@ -84,10 +84,10 @@ const Headerr = () => {
         </form>
       </div>
       <div className="flex  items-center gap-5">
-        <Link to={"/admin"} className="flex items-center gap-2">
+        {/* <Link to={"/admin"} className="flex items-center gap-2">
           <CgProfile />
           <p className="adios">Шахзод</p>
-        </Link>
+        </Link> */}
         <Link to={"/liked"} className="flex items-center gap-2">
           <AiFillHeart style={{ color: "red", fontSize: "20px" }} />
           <div className="adios">Избранное</div>
