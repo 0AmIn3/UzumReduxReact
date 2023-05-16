@@ -28,7 +28,6 @@ const Product = () => {
   const cart = useSelector((state) => state.cart.data);
   const dispath = useDispatch();
 let fill = arr.filter(item => item.type == i.type)
-  console.log(fill);
 
   function ChangeLenght(len, ar) {
     return ar.slice(0, len);

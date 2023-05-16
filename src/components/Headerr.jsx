@@ -39,16 +39,13 @@ const Headerr = () => {
       search.style.display = "block";
       catalog.style.display = "none";
     } else {
-      console.log("a");
     }
   }
   function Search(val) {
     val = val.toLowerCase();
     if (val.length > 0) {
       let as = arr.filter((item) => item.title.toLowerCase().includes(val));
-      // console.log(as);
       setSearchResult(as);
-      console.log(SearchResult);
     } else {
       setSearchResult([]);
     }

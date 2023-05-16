@@ -6,6 +6,7 @@ import { basketCTX } from "../contexts/basketCTX";
 import { useDispatch, useSelector } from "react-redux";
 import { addLiked } from "../features/liked/likedSlice";
 import { getGoodAPI, getLikeAPI, postGoodAPI } from "../features/goods/thunk";
+import axios from "axios";
 
 const Layout = () => {
   const goods = useSelector((state) => state.goods.data);
@@ -15,9 +16,10 @@ const Layout = () => {
   // console.log(liked, liked_id ,cart );
 	const dispatch = useDispatch();
 
-  useEffect(() => {
-    // console.log(cart  );
-  } , [cart])
+  // useEffect(() => {
+  //   axios.get('https://goodsapi-e2a79-default-rtdb.europe-west1.firebasedatabase.app/liked.json')
+  //   .then(res => console.log(res.data))
+  // } , [])
 	useEffect(() => {
 		if(!goods.length) {
 			dispatch(getGoodAPI())

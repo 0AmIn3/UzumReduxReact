@@ -10,23 +10,18 @@ const Basket = () => {
   const [total, setTotal] = useState(0);
   const [sale, setSale] = useState(0);
   const cart = useSelector((state) => state.cart.data);
-  // console.log(cart);
-  // let cart = ;
 
   function changeTotal(con) {
     setTotal(total + con);
-    // console.log(total);
   }
   function changeTotalmin(con) {
     setTotal(total - con);
-    // console.log(total);
   }
   function changBask(obj, count) {
    
     
   }
   useEffect(() => {
-  //  console.log(cart);
     let a = 0;
     let b = 0;
     for (let item of cart) {

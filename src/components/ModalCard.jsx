@@ -22,7 +22,6 @@ const style = {
 };
 
 const ModalCard = ({ item , open, handleClose }) => {
-    // console.log(good);
   const {
     register,
     handleSubmit,

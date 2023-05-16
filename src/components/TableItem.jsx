@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { deleteGoodAPI } from "../features/goods/thunk";
 
 const TableItem = ({ item }) => {
-  // console.log(good);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

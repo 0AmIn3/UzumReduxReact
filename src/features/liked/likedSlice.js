@@ -34,7 +34,6 @@ export const likedSlice = createSlice({
         state.data = action.payload;
         state.data_id = action.payload.map(item => item.id)
         state.status = "fulfilled";
-        // console.log(state.data_id);
 
       })
       .addCase(getLikeAPI.rejected, (state, action) => {
@@ -44,10 +43,10 @@ export const likedSlice = createSlice({
         state.status = "loading";
       })
       .addCase(postLikeAPI.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.data = action.payload;
         state.data_id = action.payload.map(item => item.id)
         state.status = "fulfilled";
-        // console.log(state.data);
       })
       .addCase(postLikeAPI.rejected, (state, action) => {
         state.status = "rejected";
@@ -59,7 +58,6 @@ export const likedSlice = createSlice({
         state.data = action.payload;
         state.data_id = action.payload.map(item => item.id)
         state.status = "fulfilled";
-        console.log(state.data);
       })
       .addCase(pathLikeAPI.rejected, (state, action) => {
         state.status = "rejected";
@@ -68,10 +66,10 @@ export const likedSlice = createSlice({
         state.status = "loading";
       })
       .addCase(deleteLikeAPI.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.data = action.payload;
         state.data_id = action.payload.map(item => item.id)
         state.status = "fulfilled";
-        console.log(state.data);
       })
       .addCase(deleteLikeAPI.rejected, (state, action) => {
         state.status = "rejected";

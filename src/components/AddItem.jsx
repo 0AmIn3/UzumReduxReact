@@ -31,7 +31,6 @@ const AddItem = ({ open, handleClose }) => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    // console.log('sw');
     data = {
       id: uuidv4(),
       title: "Кресло компьютерное игровое Cougar ARMOR One Black-Orange",
@@ -50,7 +49,6 @@ const AddItem = ({ open, handleClose }) => {
 
   const [goods, setGoods] = useState();
 
-  // console.log(goods);
 
   return (
     <>

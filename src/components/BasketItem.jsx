@@ -14,7 +14,6 @@ const BasketItem = ({ item, changeTotal, changeTotalmin, changBask }) => {
   const dispath = useDispatch();
   useEffect(() => {
     setCount(item.count);
-    // console.log(cart.indexOf(item));
   }, [cart]);
 
   return (

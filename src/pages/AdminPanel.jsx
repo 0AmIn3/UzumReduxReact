@@ -21,12 +21,11 @@ const AdminPanel = () => {
   const cookies = new Cookies();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!cookies.get("name") || cookies.get("name") == "") {
-      navigate("/admin");
-      console.log(cookies.get("name"));
-    }
-  });
+  // useEffect(() => {
+  //   if (!cookies.get("name") || cookies.get("name") == "") {
+  //     navigate("/admin");
+  //   }
+  // });
   const goods = useSelector((state) => state.goods.data);
   const dispatch = useDispatch();
   const [arr, setArr] = useState(goods);
@@ -34,8 +33,6 @@ const AdminPanel = () => {
     if (!goods.length) {
       dispatch(getGoodAPI());
       // setArr([...goods])
-      // console.log(arr);
-      // console.log(goods);
     }
   }, [goods]);
 

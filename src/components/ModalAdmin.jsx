@@ -3,7 +3,6 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 const ModalAdmin = ({ item, changeGoods ,changeModal}) => {
-  //   console.log(item);
   const {
     register,
     handleSubmit,
@@ -11,7 +10,6 @@ const ModalAdmin = ({ item, changeGoods ,changeModal}) => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
     axios.patch(`http://localhost:3001/goods/${item.id}`, data).then((r) => {
       axios.get("http://localhost:3001/goods").then((res) => {
         localStorage.setItem("goods", JSON.stringify(res.data));

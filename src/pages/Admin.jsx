@@ -8,12 +8,17 @@ const Admin = () => {
   const [users, setUsers] = useState(
     JSON.parse(localStorage.getItem("adminUsers"))
   );
+  const cookies = new Cookies();
+
   useEffect(() => {
+    cookies.set("name", 'aaa', { path: "/" })
     if (!localStorage.getItem("adminUsers")) {
       axios
         .get("http://localhost:3001/users")
         .then((res) =>
           localStorage.setItem("adminUsers", JSON.stringify(res.data))
+    
+
         );
     }
   });
@@ -26,7 +31,6 @@ const Admin = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     const cookies = new Cookies();
     if (
       users.filter(
@@ -35,7 +39,6 @@ const Admin = () => {
     ) {
       navigate("/admin/panel");
       cookies.set("name", data.name, { path: "/" });
-      console.log(cookies.get("name"));
     }
 
   };
